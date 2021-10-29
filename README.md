@@ -1,4 +1,4 @@
-# Welcome to TurnoverBNB!!
+# Welcome TurnoverBNB!!
 
 I just loved to create this app, was an opportunity to create something with a lot of new things tools and architecture!
 
