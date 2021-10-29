@@ -1,0 +1,48 @@
+{
+  "common": {
+    "ok": "OK!",
+    "cancel": "Cancel",
+    "back": "Back",
+    "empty": "Empty"
+  },
+  "errors": {
+    "invalidEmail": "Invalid email address."
+  },
+  "errorScreen": {
+    "title": "Something went wrong!",
+    "friendlySubtitle": "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.json`) and probably the layout as well (`app/screens/error`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
+    "traceTitle": "Error from %{name} stack",
+    "reset": "RESET APP"
+  },
+  "storybook": {
+    "placeholder": "Placeholder",
+    "field": "Field"
+  },
+  "loginScreen": {
+    "email": "email",
+    "password": "password",
+    "submit": "SUBMIT",
+    "forgotPassword": "Recover password",
+    "loading": "LOADING...",
+    "register": "New account",
+    "back": "BACK TO LOGIN",
+    "signIn": "Sign in",
+    "signUp": "SIGN UP",
+    "username": "username"
+  },
+  "purchaseScreen": {
+    "amount": "AMOUNT",
+    "date": "DATE",
+    "addPurchase": "ADD PURCHASE",
+    "depositCheck": "DEPOSIT CHECK",
+    "description": "DESCRIPTION",
+    "customer": "CUSTOMER",
+    "email": "EMAIL",
+    "currency": "USD",
+    "edit": "EDIT",
+    "upload": "UPLOAD CHECK PICTURE",
+    "messageCheck": "*The money will be deposited in your account once the check is accepted",
+    "accept": "ACCEPT",
+    "reject": "REJECT"
+  }
+}

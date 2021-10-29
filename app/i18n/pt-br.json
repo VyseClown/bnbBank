@@ -1,0 +1,49 @@
+{
+  "common": {
+    "ok": "OK!",
+    "cancel": "Cancelar",
+    "back": "Voltar"
+  },
+  "errors": {
+    "invalidEmail": "Endereço de email invalido."
+  },
+  "homeScreen": {
+    "poweredBy": "POWERED BY IGNITE",
+    "readyForLaunch": "Ready for launch.",
+    "continue": "CONTINUE"
+  },
+  "demoListScreen": {
+    "title": "Demo List"
+  },
+  "errorScreen": {
+    "title": "Something went wrong!",
+    "friendlySubtitle": "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.json`) and probably the layout as well (`app/screens/error`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
+    "traceTitle": "Error from %{name} stack",
+    "reset": "RESET APP"
+  },
+  "storybook": {
+    "placeholder": "Placeholder",
+    "field": "Field"
+  },
+  "loginScreen": {
+    "email": "email",
+    "password": "senha",
+    "submit": "ENVIAR",
+    "signup": "Cadastrar",
+    "forgotPassword": "Recuperar senha",
+    "loading": "CARREGANDO...",
+    "register": "Nova conta",
+    "back": "Voltar",
+    "signIn": "Entrar",
+    "signUp": "Registrar",
+    "username": "usuario"
+  },
+  "purchaseScreen": {
+    "amount": "VALOR",
+    "date": "DATA",
+    "addPurchase": "ADICIONAR",
+    "description": "DESCRIÇÃO",
+    "currency": "USD",
+    "depositCheck": "DEPOSITAR CHEQUE"
+  }
+}

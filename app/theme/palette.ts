@@ -1,0 +1,18 @@
+export const palette = {
+  black: "#1d1d1d",
+  white: "#ffffff",
+  offWhite: "#e6e6e6",
+  orange: "#FBA928",
+  orangeDarker: "#EB9918",
+  lightGrey: "#939AA4",
+  darkGray: "#474747",
+  lighterGrey: "#CDD4DA",
+  angry: "#dd3333",
+  deepPurple: "#5D2555",
+  purple: "#5C02B4",
+  primary: "#2799FB",
+  secondary:"#BDE0FF",
+  tertiary:"#DBEFFF",
+  quaternary:"#F1F9FE",
+  quinary:"#7CC2FD",
+}
