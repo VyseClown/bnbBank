@@ -25,7 +25,7 @@ export const AuthenticationStoreModel = types
     }
   }))
   .actions((self) => ({
-    login: flow(function* (emailAddress: string, password: string, setUser: (user: any) => void) {
+    login: flow(function* (emailAddress: string, password: string, setUser: (user: any) => void, hasRequestError?: () => void) {
       self.setStatus("pending")
 
       const authenticationApi = new AuthenticationApi(self.environment.api)
@@ -40,6 +40,7 @@ export const AuthenticationStoreModel = types
       } else {
         self.setStatus("error")
         self.setAuthenticated(false)
+        hasRequestError && hasRequestError()
         __DEV__ && console.tron.log(result.kind)
       }
     }),

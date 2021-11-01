@@ -3,10 +3,9 @@ import { View, StyleSheet } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
 import { Controller, useForm } from "react-hook-form"
-import { CardItem, Button, Screen, TextField } from "../../components"
+import { CardItem, Button, Screen, TextField, MessageOverlay } from "../../components"
 import { color, spacing } from "../../theme"
 import { NavigatorParamList } from "../../navigators"
-import { AntDesign } from "@expo/vector-icons"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import DateTimePickerModal from "react-native-modal-datetime-picker"
 import { returnStringMonth } from "../../utils/return-string-month"
@@ -17,8 +16,7 @@ import { allTransactionsState, balance, incomeTotal, expenseTotal } from "../../
 import { formatter } from "../../utils/currency-formatter"
 import { Transaction } from "../../models/transaction/transaction"
 
-const iconDown = () => <AntDesign name="down" size={24} color={color.palette.white} />
-const iconPlus = () => <AntDesign name="plus" size={24} color={color.primary} />
+const secureLogin = require("../../../assets/images/secureLogin.png")
 
 const styles = StyleSheet.create({
   button: {
@@ -87,7 +85,6 @@ export const PurchaseScreen: FC<StackScreenProps<NavigatorParamList, "purchase">
     const [formattedDate, setFormattedDate] = useState("")
     const [teste, setTeste] = useState("")
     const [fetchedData, setFetchedData] = useState([])
-    const registerScreen = () => navigation.navigate("register")
 
     const {
       register,
@@ -138,7 +135,7 @@ export const PurchaseScreen: FC<StackScreenProps<NavigatorParamList, "purchase">
     const onNewTransaction = async (data: FormData) => {
       const { amount } = data
       if (canMakePurchase(amount)) {
-        const { description, date } = data
+        const { description } = data
         const userName = await loadString("userName")
         const newTransaction: Transaction = {
           value: normalizeToNumber(amount).toString(),
@@ -176,7 +173,7 @@ export const PurchaseScreen: FC<StackScreenProps<NavigatorParamList, "purchase">
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextField
                 inputStyle={styles.input}
                 labelTx="purchaseScreen.amount"
@@ -186,6 +183,9 @@ export const PurchaseScreen: FC<StackScreenProps<NavigatorParamList, "purchase">
                   name: "money",
                   color: color.secondary,
                   marginRight: 10,
+                }}
+                onFocus={() => {
+                  onChange("")
                 }}
                 onBlur={() => {
                   const numberValue = parseFloat(value)

@@ -66,7 +66,7 @@ export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "BNB Bank">> = 
         })
       })
       setFormattedDate(`${stringMonth}, ${selectedDate.getFullYear()}`)
-    }, [selectedDate])
+    }, [selectedDate, incomeValue, expenseValue])
 
     const showDatePicker = () => {
       setDatePickerVisibility(true)

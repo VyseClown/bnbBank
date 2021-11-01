@@ -107,7 +107,6 @@ export const CheckScreen: FC<StackScreenProps<NavigatorParamList, "check">> = ob
     const [allTransactions, setAllTransactions] = useRecoilState(allTransactionsState)
     const balanceValue = useRecoilValue(balance)
     const { transactionStore } = useStores()
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
     const [image, setImage] = useState(null)
     const addImage = async () => {
       const _image = await ImagePicker.launchImageLibraryAsync({
@@ -167,7 +166,7 @@ export const CheckScreen: FC<StackScreenProps<NavigatorParamList, "check">> = ob
             rules={{
               required: true,
             }}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, value } }) => (
               <View>
                 <TextField
                   inputStyle={styles.input}
@@ -178,6 +177,9 @@ export const CheckScreen: FC<StackScreenProps<NavigatorParamList, "check">> = ob
                     name: "money",
                     color: color.secondary,
                     marginRight: 10,
+                  }}
+                  onFocus={() => {
+                    onChange("")
                   }}
                   onBlur={() => {
                     const numberValue = parseFloat(value)

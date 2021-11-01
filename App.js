@@ -24,7 +24,7 @@ window.server = createServer({
     server.schema.users.create({
       userName: "adm",
       emailAddress: "adm@gmail.com",
-      password: "123456",
+      password: "12345678",
       admin: "true"
     })
     server.schema.transactions.create({
@@ -102,6 +102,14 @@ window.server = createServer({
 
     this.post("/api/Authentication/sign-up", (schema, request) => {
       const attrs = JSON.parse(request.requestBody)
+      const { emailAddress, userName } = attrs
+
+      if (schema.users.where({ emailAddress }).models.length > 0) {
+        throw new Error("Email already exists")
+      }
+      if (schema.users.where({ userName }).models.length > 0) {
+        throw new Error("User already exists")
+      }
       return schema.users.create(attrs)
     })
 

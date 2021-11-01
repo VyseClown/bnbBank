@@ -20,3 +20,5 @@ Currently includes:
 ## Quick Start
 
 Just run yarn start and select your simulator and you are good to go!
+
+The admin account is adm@gmail.com and the password is 12345678

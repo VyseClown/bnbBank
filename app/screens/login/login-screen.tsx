@@ -1,14 +1,16 @@
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React, { FC, useLayoutEffect } from "react"
+import React, { FC, useLayoutEffect, useState } from "react"
 import { Controller, FieldError, useForm } from "react-hook-form"
 import { StyleSheet, View } from "react-native"
-import { Button, Screen, Text, TextField } from "../../components"
+import { Button, MessageOverlay, Screen, Text, TextField } from "../../components"
 import { useStores } from "../../models"
 import { NavigatorParamList } from "../../navigators/stacks"
 import { color, spacing } from "../../theme"
 import { userState } from "../../recoil"
 import { useRecoilState } from "recoil"
+
+const secureLogin = require("../../../assets/images/secureLogin.png")
 
 const styles = StyleSheet.create({
   button: {
@@ -62,9 +64,17 @@ type FormData = {
 export const LoginScreen: FC<StackScreenProps<NavigatorParamList, "login">> = observer(
   function LoginScreen({ navigation }) {
     const registerScreen = () => navigation.navigate("register")
-    const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
+    const {
+      control,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<FormData>()
     const [user, setUser] = useRecoilState(userState)
     const { authenticationStore } = useStores()
+    const [isModalErrorVisible, setIsModalErrorVisible] = useState(false)
+
+    const hasRequestError = () => setIsModalErrorVisible(true)
+    const handleOutsideModalPress = () => setIsModalErrorVisible(false)
 
     useLayoutEffect(() => {
       return () => {
@@ -72,7 +82,7 @@ export const LoginScreen: FC<StackScreenProps<NavigatorParamList, "login">> = ob
       }
     }, [authenticationStore])
     const onLogin = async (data: FormData) => {
-      await authenticationStore.login(data.emailAddress, data.password, setUser)
+      await authenticationStore.login(data.emailAddress, data.password, setUser, hasRequestError)
     }
 
     const onPressForgotPassword = () => {
@@ -81,6 +91,12 @@ export const LoginScreen: FC<StackScreenProps<NavigatorParamList, "login">> = ob
 
     return (
       <Screen style={styles.root} preset="scroll" unsafe>
+        <MessageOverlay
+          error={"errors.verifyAccountInfo"}
+          isVisible={isModalErrorVisible}
+          setIsVisible={handleOutsideModalPress}
+          backImage={secureLogin}
+        />
         <View style={styles.logoBackground}>
           <Text style={styles.logoText}>BNB Bank</Text>
         </View>
@@ -99,7 +115,7 @@ export const LoginScreen: FC<StackScreenProps<NavigatorParamList, "login">> = ob
                 value={value}
                 errors={errors}
                 name="emailAddress"
-                autoCapitalize='none'
+                autoCapitalize="none"
               />
             )}
             name="emailAddress"
@@ -138,7 +154,11 @@ export const LoginScreen: FC<StackScreenProps<NavigatorParamList, "login">> = ob
             onPress={handleSubmit(onLogin)}
           />
           <View style={styles.secondaryPath}>
-            <Text style={styles.buttonText} tx="loginScreen.forgotPassword" onPress={onPressForgotPassword} />
+            <Text
+              style={styles.buttonText}
+              tx="loginScreen.forgotPassword"
+              onPress={onPressForgotPassword}
+            />
             <Text style={styles.buttonText} tx="loginScreen.register" onPress={registerScreen} />
           </View>
         </View>

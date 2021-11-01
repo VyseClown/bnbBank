@@ -6,7 +6,8 @@
     "empty": "Empty"
   },
   "errors": {
-    "invalidEmail": "Invalid email address."
+    "invalidEmail": "Invalid email address.",
+    "verifyAccountInfo": "Double check your email and password! \nAnd if your account exists!"
   },
   "errorScreen": {
     "title": "Something went wrong!",
